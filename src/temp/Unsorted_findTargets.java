@@ -14,7 +14,7 @@ public class Unsorted_findTargets {
         }
         return null;
     }
-    //another solution for same problem but different approach
+    
     public int[] findTwoNumbers(int[] arr,int target){
         int[] ans = find(arr,target);
         if(ans != null) return ans;
