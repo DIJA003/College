@@ -16,13 +16,32 @@ class SimpleGLEventListener implements GLEventListener {
         gl.glMatrixMode(GL.GL_PROJECTION);
         gl.glLoadIdentity();
 
-        gl.glOrtho(0.0, 600.0, 0.0, 300.0, -1.0, 1.0);
+        gl.glOrtho(0.0, 800.0, 0.0, 800.0, -1.0, 1.0);
 
     }
 
     @Override
     public void display(GLAutoDrawable glAutoDrawable) {
+        GL gl = glAutoDrawable.getGL();
+        gl.glClear(GL.GL_COLOR_BUFFER_BIT);
 
+        gl.glBegin(GL.GL_POINTS);
+            gl.glColor3f(0,0,0);
+            gl.glPointSize(250);
+            gl.glVertex2i(300,300);
+        gl.glEnd();
+
+        gl.glBegin(GL.GL_POINTS);
+            gl.glColor3f(0,0,0);
+            gl.glPointSize(250);
+            gl.glVertex2i(250,250);
+        gl.glEnd();
+
+        gl.glBegin(GL.GL_POINTS);
+            gl.glColor3f(0,0,0);
+            gl.glPointSize(250);
+            gl.glVertex2i(350,350);
+        gl.glEnd();
     }
 
     @Override

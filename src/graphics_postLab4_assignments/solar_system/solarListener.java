@@ -157,12 +157,12 @@ public class solarListener implements GLEventListener {
         drawCircle(gl, 10, 0, 0, "#5B8FFF");
         gl.glPopMatrix();
 
-        if(isClockWise){
-            angel += speed;
-        }
-        if(!isClockWise){
-            angel-=speed;
-        }
+//        if(isClockWise){
+//            angel += speed;
+//        }
+//        if(!isClockWise){
+//            angel-=speed;
+//        }
 
     }
 

@@ -9,12 +9,12 @@ import java.awt.event.KeyListener;
 public class PongEventListener implements GLEventListener, KeyListener {
 
     float ballx = 0, bally = 0;
-    float dx = 3, dy = 3;
+    float dx = 5, dy = 5;
     int ballSize = 15;
 
     float rackW = 15, rackH = 80;
     float leftRackY = 0, rightRackY = 0;
-    float rackSpeed = 6;
+    float rackSpeed = 9;
 
     int leftScore = 0, rightScore = 0;
 
@@ -42,7 +42,8 @@ public class PongEventListener implements GLEventListener, KeyListener {
 
     @Override
     public void reshape(GLAutoDrawable glAutoDrawable, int i, int i1, int i2, int i3) {
-
+//        GL gl = glAutoDrawable.getGL();
+//        gl.glViewport(0,0,i2,i3);
     }
 
     @Override
@@ -95,12 +96,12 @@ public class PongEventListener implements GLEventListener, KeyListener {
 
     private void update() {
 
-        if (ballx < -410) {
+        if (ballx < -400) {
             rightScore++;
             resetBall();
             return;
         }
-        if (bally > 410) {
+        if (bally > 400) {
             leftScore++;
             resetBall();
             return;
@@ -122,14 +123,14 @@ public class PongEventListener implements GLEventListener, KeyListener {
         if (ballx <= -380 + rackW &&
                 bally >= leftRackY &&
                 bally <= leftRackY + rackH) {
-            dx *= -1.1f;
-            dy *= 1.05f;
+            dx *= -1.5f;
+            dy *= 1.1f;
         }
         if (ballx + ballSize >= 380 - rackW &&
                 bally >= rightRackY &&
                 bally <= rightRackY + rackH) {
-            dx *= -1.1f;
-            dy *= 1.05f;
+            dx *= -1.5f;
+            dy *= 1.1f;
         }
 
     }
@@ -137,7 +138,7 @@ public class PongEventListener implements GLEventListener, KeyListener {
     private void resetBall() {
         ballx = 0;
         bally = 0;
-        dx = (dx > 0 ? -3 : 3);
-        dy = 3;
+        dx = (dx > 0 ? -5 : 5);
+        dy = 5;
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Sorted_findTargets {
     public static void main(String[] args){
-        List<List<Integer>> li = find(new int[] {2,3,6,7},7);
+        List<List<Integer>> li = find(new int[] {2,3,5},7);
         for(List<Integer>list :li){
             for(int num:list){
                 System.out.print(num+" ");
