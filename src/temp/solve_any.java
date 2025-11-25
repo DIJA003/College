@@ -14,10 +14,12 @@ public class solve_any {
 //        list = solve(new int[]{1, 2, 3, 4, 5});
 //        for (int i : list) System.out.print(i + " ");
 
-        int[] arr = new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-        System.out.println("Before sort: " + Arrays.toString(arr));
-        mergeSort(arr);
-        System.out.println("After sort: " + Arrays.toString(arr));
+//        int[] arr = new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+//        System.out.println("Before sort: " + Arrays.toString(arr));
+//        mergeSort(arr);
+//        System.out.println("After sort: " + Arrays.toString(arr));
+
+//        System.out.println(1<<5);
     }
     //{5,1,4,9,8,0,1}
     //{1,2,3,4,5}

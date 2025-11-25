@@ -1,8 +1,6 @@
-package MyRandom;
+package MyRandom.FishTankGameKeys;
 
 import com.sun.opengl.util.FPSAnimator;
-import graphics_lab3.EventListner;
-import graphics_lab3.Task;
 
 import javax.media.opengl.GLCanvas;
 import javax.swing.*;
@@ -10,16 +8,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BullshitMain extends JFrame implements ActionListener {
-    private final GLCanvas canvas;
-    private final BullshitListner listener = new BullshitListner();
+public class FishGame extends JFrame implements ActionListener {
     FPSAnimator animator;
-    public static void main(String[] args) {
-        new BullshitMain();
+    GLCanvas canvas;
+    EventListener listener = new EventListener();
+    public static void main(String[] args){
+        new FishGame();
     }
-
-    public BullshitMain() {
-        super("Task!");
+    public FishGame(){
+        super("Fish Tank!");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -30,23 +27,26 @@ public class BullshitMain extends JFrame implements ActionListener {
 
         animator = new FPSAnimator(canvas, 30);
         animator.start();
-//        JButton restart = new JButton("Restart Game");
-//        restart.setFocusable(false);
-//        restart.setActionCommand("rstr");
-//        restart.addActionListener(this);
-//        restart.setBackground(Color.ORANGE);
+        JButton restart = new JButton("Restart Game");
+        restart.setFocusable(false);
+        restart.setActionCommand("rstr");
+        restart.addActionListener(this);
+        restart.setBackground(Color.ORANGE);
 
         add(canvas, BorderLayout.CENTER);
-//        add(restart,BorderLayout.SOUTH);
+        add(restart,BorderLayout.SOUTH);
 
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
+        if(e.getActionCommand().equals("rstr")){
+            listener.restartGame();
+            canvas.requestFocus();
+        }
     }
 }

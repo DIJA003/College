@@ -10,6 +10,10 @@ public class solarListener implements GLEventListener {
     private int speed = 1;
     private boolean isClockWise = true;
 
+    private int[][] stars = new int[200][2];
+    private boolean starsInitialized = false;
+
+
     public void increaseSpeed(){
         speed++;
     }
@@ -57,6 +61,8 @@ public class solarListener implements GLEventListener {
     public void display(GLAutoDrawable glAutoDrawable) {
         GL gl = glAutoDrawable.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
+
+        drawStars(gl);
 
         if(isClockWise){
             angel += speed;
@@ -214,5 +220,27 @@ public class solarListener implements GLEventListener {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
+    }
+
+    private void initStars() {
+        for (int i = 0; i < stars.length; i++) {
+            stars[i][0] = (int) ((Math.random() * 800) - 400);
+            stars[i][1] = (int) ((Math.random() * 450) - 225);
+        }
+        starsInitialized = true;
+    }
+
+    private void drawStars(GL gl) {
+        if (!starsInitialized) initStars();
+
+        setHexColor(gl, "#FFFFFF");
+        gl.glPointSize(2f);
+        gl.glBegin(GL.GL_POINTS);
+
+        for (int[] s : stars) {
+            gl.glVertex2i(s[0], s[1]);
+        }
+
+        gl.glEnd();
     }
 }
