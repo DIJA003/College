@@ -5,6 +5,7 @@ import java.util.*;
 
 public class solve_any {
     public static void main(String[] args) {
+        Scanner in = new Scanner (System.in);
 //        List<Integer> list = solve(new int[]{10, 2, 4, 7});
 //        for (int i : list) System.out.print(i + " ");
 //        System.out.println();
@@ -20,9 +21,22 @@ public class solve_any {
 //        System.out.println("After sort: " + Arrays.toString(arr));
 
 //        System.out.println(1<<5);
+
+
     }
     //{5,1,4,9,8,0,1}
     //{1,2,3,4,5}
+
+    // minimum number of elements to delete to leave
+    // only elements of equal value
+    public static int equalizeArray(int[] arr){
+        int n = arr.length;
+        int[] freq = new int[101];
+        for(int i : arr) freq[i]++;
+        int ref = 0;
+        for(int i : freq) ref = Math.max(ref,i);
+        return n - ref;
+    }
 
     //
     private static void manual_sort(int[] arr) {
