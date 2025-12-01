@@ -5,7 +5,7 @@ import java.util.*;
 
 public class solve_any {
     public static void main(String[] args) {
-        Scanner in = new Scanner (System.in);
+        Scanner in = new Scanner(System.in);
 //        List<Integer> list = solve(new int[]{10, 2, 4, 7});
 //        for (int i : list) System.out.print(i + " ");
 //        System.out.println();
@@ -22,19 +22,45 @@ public class solve_any {
 
 //        System.out.println(1<<5);
 
+//        int[][]cost = new int[][]
+//                {       {9,2,7,8},
+//                        {6,4,3,7},
+//                        {5,8,1,8},
+//                        {7,6,9,4}
+//                };
+//        System.out.println(minAssign(cost,cost.length));
+
+//        System.out.println(fac(5));
 
     }
+
+
+//          Quiz 4
+//    public static int fac(int n, int l, int r){
+//        if(l == r) return l;
+//        int mid = (r + l) / 2;
+//        return fac(n,l,mid)*fac(n,mid+1,r);
+//    }
+//
+//    public static int fac(int n){
+//        int[] dp = new int[n + 1];
+//        dp[0] = 1;
+//        dp[1] = 1;
+//        dp[2] = 2;
+//        for(int i = 3; i <= n; i++) dp[i] = i * dp[i - 1];
+//        return dp[n];
+//    }
     //{5,1,4,9,8,0,1}
     //{1,2,3,4,5}
 
     // minimum number of elements to delete to leave
     // only elements of equal value
-    public static int equalizeArray(int[] arr){
+    public static int equalizeArray(int[] arr) {
         int n = arr.length;
         int[] freq = new int[101];
-        for(int i : arr) freq[i]++;
+        for (int i : arr) freq[i]++;
         int ref = 0;
-        for(int i : freq) ref = Math.max(ref,i);
+        for (int i : freq) ref = Math.max(ref, i);
         return n - ref;
     }
 
@@ -208,6 +234,54 @@ public class solve_any {
             arr[k++] = temp[i++];
         }
 
+    }
+
+    /*
+    Let there be N workers and N jobs. Any worker can be assigned to perform any job,
+    incurring some cost that may vary depending on the work-job assignment.
+    It is required to perform all jobs by assigning exactly one worker to each job and exactly one job to each agent in
+    such a way that the total cost of the assignment is minimized.
+            Input Format
+            Number of workers and job: N
+            Cost matrix C with dimension N*N where C(i,j) is the cost incurred on assigning ith Person to jth Job.
+
+            Sample Input
+            4
+
+            [
+            9 2 7 8
+            6 4 3 7
+            5 8 1 8
+            7 6 9 4
+            ]
+
+            Sample Output
+            13
+
+            Constraints
+            N <= 20
+*/
+
+    public static long minAssign(int[][] cost, int n) {
+        int full = 1 << n;
+        long inf = Long.MAX_VALUE / 4;
+        long[] dp = new long[full];
+        Arrays.fill(dp, inf);
+        dp[0] = 0;
+        for (int mask = 0; mask < full; mask++) {
+            int k = Integer.bitCount(mask);
+            if (k >= n) continue;
+            long base = dp[mask];
+            if (base == inf) continue;
+            for (int j = 0; j < n; ++j){
+                if((mask & (1 << j)) == 0){
+                    int nm = mask | (1<<j);
+                    long val = base + cost[k][j];
+                    if(val < dp[nm]) dp[nm] = val;
+                }
+            }
+        }
+        return dp[full - 1];
     }
 
 }

@@ -6,30 +6,30 @@ import java.util.*;
 //a3mlha bel priority queue
 public class PrimTextBook {
     public static void main(String[] args) {
-        int n = 5;
+        int n = 4;
 
         int[][] w = {
-                {0, 2, 0, 6, 0},
-                {2, 0, 3, 8, 5},
-                {0, 3, 0, 0, 7},
-                {6, 8, 0, 0, 9},
-                {0, 5, 7, 9, 0}
+                {0, 4, 3, 2},
+                {4, 0, 6, 4},
+                {3, 6, 0, 1},
+                {2, 4, 1, 0}
         };
+
         System.out.println(prim(n, w));
-        System.out.println(prim3(n,w));
-
-        List<List<Edge2>> graph = new ArrayList<>();
-        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
-
-        addEdge(graph, 0, 1, 2);
-        addEdge(graph, 0, 3, 6);
-        addEdge(graph, 1, 2, 3);
-        addEdge(graph, 1, 3, 8);
-        addEdge(graph, 1, 4, 5);
-        addEdge(graph, 2, 4, 7);
-        addEdge(graph, 3, 4, 9);
-
-        System.out.println(prim2(n, graph));
+//        System.out.println(prim3(n,w));
+//
+//        List<List<Edge2>> graph = new ArrayList<>();
+//        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
+//
+//        addEdge(graph, 0, 1, 2);
+//        addEdge(graph, 0, 3, 6);
+//        addEdge(graph, 1, 2, 3);
+//        addEdge(graph, 1, 3, 8);
+//        addEdge(graph, 1, 4, 5);
+//        addEdge(graph, 2, 4, 7);
+//        addEdge(graph, 3, 4, 9);
+//
+//        System.out.println(prim2(n, graph));
     }
 //---------------------------------------------------------------------------------------------------------------------
     //using textbook sudo code
@@ -44,7 +44,7 @@ public class PrimTextBook {
 
         @Override
         public String toString() {
-            return String.format("Edge: from %d to %d with cost of %d", from, to, cost);
+            return String.format("Edge: from %d to %d with cost of %d", from+1, to+1, cost);
         }
     }// stand for the set F
 
@@ -85,6 +85,7 @@ public class PrimTextBook {
         for (Edge e : f) {
             ans += e.cost;
         }
+        showMST(f);
         return ans;
     }
     public static void showMST(List<Edge> MST){
@@ -94,7 +95,7 @@ public class PrimTextBook {
     }
 //------------------------------------------------------------------------------------------------------------------
 
-    //with priority queue but no weighted matrix
+    //with priority queue but no weighted matrix adjacency list
     public static class Edge2 {
         int node, cost;
 
